@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ganador de la Votación</title>
+</head>
+<body>
+    <h2>Resultado de la Votación</h2>
+    <div th:if="${ganador != null}">
+        <h3>Partido Político Ganador: <span th:text="${ganador.nombrePartido}"></span></h3>
+        <p>Cantidad de Votos: <span th:text="${votos}"></span></p>
+    </div>
+    <div th:if="${error != null}">
+        <p th:text="${error}"></p>
+    </div>
+</body>
+</html>

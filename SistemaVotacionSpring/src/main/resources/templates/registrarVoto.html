@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registre su Voto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        h2 {
+            color: #007bff;
+        }
+        
+        form {
+            width: 60%;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        legend {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+        }
+        
+        input[type="text"],
+        select {
+            width: calc(100% - 22px); /* Ajuste para compensar el padding y border */
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        select {
+            width: 100%;
+        }
+        
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>Sistema de Elecciones</h2>
+    <form th:action="@{/registrarVoto}" method="POST">
+     <input type="hidden" name="codigoUsuario" th:value="${codigoUsuario}" />
+        <fieldset>
+            <legend>Datos del Alumno</legend>
+            <label for="codigo">Código:</label>
+            <input type="text" name="codigo" th:value="${alumno.codigo}" readonly><br>
+        
+            <label for="nombre">Nombres:</label>
+            <input type="text" name="nombre" th:value="${alumno.nombres}" readonly><br>
+        
+            <label for="apePaterno">Apellido Paterno:</label>
+            <input type="text" name="apePaterno" th:value="${alumno.apellidoPaterno}" readonly><br>
+        
+            <label for="apeMaterno">Apellido Materno:</label>
+            <input type="text" name="apeMaterno" th:value="${alumno.apellidoMaterno}" readonly><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Datos del Voto</legend>
+            <label for="partidoPolitico">Partido Político:</label>
+            <select name="codigoPartido" required>
+                <option value="">Seleccione un partido</option>
+                <option th:each="partido : ${partidos}" th:value="${partido.codigo}" th:text="${partido.nombrePartido}"></option>
+            </select><br><br>
+            <button type="submit">Registrar Voto</button>
+        </fieldset>
+    </form>
+</body>
+</html>

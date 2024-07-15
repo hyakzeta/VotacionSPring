@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Elecciones 2006</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        h2 {
+            color: #007bff;
+        }
+        
+        form {
+            width: 300px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+        }
+        
+        input[type="email"],
+        input[type="password"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        p {
+            margin-top: 20px;
+        }
+        
+        a {
+            color: #007bff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h2>Sistema de Elecciones</h2>
+    
+    <form th:action="@{/usuario/validarUsuario}" method="POST">
+        <label for="correo">Correo:</label>
+        <input type="email" id="correo" name="correo" required>
+        
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <button type="submit">Ingresar</button>
+        
+        <div>
+            <span style="color:red;">
+                <!-- Mostrar error si existe -->
+                <div th:if="${error}" th:text="${error}"></div>
+            </span>
+        </div>
+        
+        <div>
+            <span style="color:green;">
+                <!-- Mostrar mensaje de éxito si existe -->
+                <div th:if="${mensaje}" class="mensaje-exitosamente" th:text="${mensaje}"></div>
+            </span>
+        </div>
+        
+        <div th:if="${mostrarBoton}">
+            <form th:action="@{/ganador}" method="get">
+                <button type="submit">Mostrar Ganador</button>
+            </form>
+        </div>
+         
+    </form>
+    	
+    
+    
+</body>
+</html>
